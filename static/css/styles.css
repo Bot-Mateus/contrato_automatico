@@ -1,0 +1,90 @@
+/* Reset de Estilos */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7f7f7;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.title {
+    font-size: 36px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contract-templates {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.contract-template {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    width: calc(50% - 20px);
+    max-width: 350px;
+    display: flex; /* Adicionado */
+    flex-direction: column; /* Adicionado */
+    justify-content: space-between; /* Adicionado */
+}
+
+.contract-template:hover {
+    transform: translateY(-5px);
+}
+
+.contract-template h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.contract-template p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.use-contract-btn {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+    align-self: flex-end; /* Adicionado */
+}
+
+.use-contract-btn:hover {
+    background-color: #0056b3;
+}
+
+.contract-preview {
+    display: none;
+    margin-top: 20px;
+}
+
+.contract-preview h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.contract-preview iframe {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

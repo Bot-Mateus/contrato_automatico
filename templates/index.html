@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha um Modelo de Contrato de Locação</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Escolha o Contrato de Locação</h1>
+        <div class="contract-templates">
+            <div class="contract-template" onclick="showPreview('modelo1')">
+                <h3>Modelo Simples</h3>
+                <p>Um contrato completo e confiável, para garantir a segurança de ambas as partes durante a locação do
+                    imóvel.</p>
+                <a href="#" onclick="submitForm('modelo1')" class="use-contract-btn">Usar Este Contrato</a>
+            </div>
+            <div class="contract-template" onclick="showPreview('modelo2')">
+                <h3>Modelo com Fiadores</h3>
+                <p>Contrato de locação residencial entre locador, locatário e fiadores, estabelecendo prazo, valor do
+                    aluguel e responsabilidades. Define obrigações do locatário, multas por atraso e procedimentos em
+                    casos específicos. Determina o foro para questões judiciais.</p>
+                <a href="#" onclick="submitForm('modelo2')" class="use-contract-btn">Usar Este Contrato</a>
+            </div>
+            <!-- Adicione mais modelos conforme necessário -->
+        </div>
+
+        <div id="preview-modelo1" class="contract-preview">
+            <h2>Prévia do Contrato Padrão de Locação</h2>
+            <!-- Inclua a prévia do contrato padrão de locação aqui -->
+            <iframe src="https://docs.google.com/document/d/e/2PACX-1vReYq6g-hVNfGtG8ij5mtb7z7mR7wkca1LyZrv3U6-RsVfyvi1aR7lLSjauLXIuRwI8QP_OMbAjzxhZ/pub?embedded=true" width="100%" height="600px"></iframe>
+        </div>
+        <div id="preview-modelo2" class="contract-preview">
+            <h2>Prévia do Contrato com Fiadores</h2>
+            <!-- Inclua a prévia do contrato personalizado de locação aqui -->
+            <iframe src="https://docs.google.com/document/d/e/2PACX-1vQhTA5d-VCdLlwcYY0I6p49wqLdH5i59r3y76xjWuzfsBK-Bu7KHOEL5OesoLtCKMY3fkeTsp49-vli/pub?embedded=true" width="100%" height="600px"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function showPreview(modelo) {
+            var previews = document.querySelectorAll('.contract-preview');
+            previews.forEach(function(preview) {
+                preview.style.display = 'none';
+            });
+
+            document.getElementById('preview-' + modelo).style.display = 'block';
+        }
+
+        function submitForm(modelo) {
+            // Criar um formulário invisível
+            var form = document.createElement('form');
+            form.method = 'GET'; // Use GET para enviar o modelo como um parâmetro na URL
+            form.action = '/formulario';
+
+            // Adicionar um campo oculto para o modelo
+            var modeloInput = document.createElement('input');
+            modeloInput.type = 'hidden';
+            modeloInput.name = 'modelo';
+            modeloInput.value = modelo;
+            form.appendChild(modeloInput);
+
+            // Adicionar o formulário à página e enviá-lo
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+</body>
+</html>

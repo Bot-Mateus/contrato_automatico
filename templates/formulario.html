@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Preenchimento do Formulário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/formulario.css') }}">
+    <script>
+        function generateContract() {
+            // Exibir mensagem de carregamento
+            document.getElementById('loading').style.display = 'block';
+
+            // Obter os dados do formulário
+            var formData = new FormData(document.querySelector('form'));
+
+            // Criar uma solicitação AJAX para gerar o contrato
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/generate_contract', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Ocultar mensagem de carregamento
+                    document.getElementById('loading').style.display = 'none';
+                    // Exibir mensagem de sucesso
+                    document.getElementById('success-message').style.display = 'block';
+                    // Exibir o link de download
+                    document.getElementById('download-link').style.display = 'block';
+                    // Extrair o nome do arquivo do contrato gerado da resposta JSON
+                    var response = JSON.parse(xhr.responseText);
+                    var contractFilename = response.contract_filename;
+                    // Atualizar o link de download com o nome do arquivo do contrato gerado
+                    var contractId = response.contract_id;
+                    document.getElementById('download-link').href = "/download_contract?contract_id=" + contractId;
+                } else {
+                    alert('Erro ao gerar o contrato. Por favor, tente novamente.');
+                    // Ocultar mensagem de carregamento em caso de erro
+                    document.getElementById('loading').style.display = 'none';
+                }
+            };
+            xhr.send(formData);
+        }
+    </script>
+</head>
+<body>
+    <h1>Preencha as Informações do Contrato</h1>
+    <form onsubmit="generateContract(); return false;">
+        <!-- Adicione um campo oculto para enviar o modelo selecionado -->
+        <input type="hidden" name="modelo" value="{{ modelo }}">
+        <!-- Remova o campo oculto "template_path" se não for necessário -->
+
+        <!-- Exiba os campos do modelo -->
+        {% for campo in campos %}
+            <label for="{{ campo }}">{{ campo|capitalize }}:</label><br>
+            <input type="text" id="{{ campo }}" name="{{ campo }}" required><br>
+        {% endfor %}
+
+        <!-- Adicione um botão de envio -->
+        <input type="submit" value="Gerar Contrato">
+    </form>
+
+    <!-- Elemento para exibir mensagem de carregamento -->
+    <div id="loading" style="display: none;">Gerando contrato...</div>
+
+    <!-- Elemento para exibir mensagem de sucesso -->
+    <div id="success-message" style="display: none; text-align: center; margin-top: 20px;">
+        <p style="color: green;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg> Contrato gerado com sucesso!</p>
+        <a id="download-link" href="#" style="display: none; text-decoration: none; font-weight: bold; color: #fff; background-color: #007bff; padding: 10px 20px; border-radius: 5px; transition: background-color 0.3s;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M7 10l5 5 5-5H7z"/></svg> Baixar Contrato</a>
+    </div>
+</body>
+</html>
