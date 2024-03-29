@@ -93,7 +93,3 @@ def fill_contract_template(data, template_path, output_path):
             if key in paragraph.text:
                 paragraph.text = paragraph.text.replace(key, value)
     doc.save(output_path)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
