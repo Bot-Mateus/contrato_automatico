@@ -9,5 +9,19 @@
     ],
     "rewrites": [
         { "source": "/(.*)", "destination": "/api/app.py" }
-    ]
+    ],
+    "functions": {
+        "api": {
+            "runtime": "vercel-python@3.9",
+            "includeFiles": ["api/**"],
+            "routes": [{ "src": "/.*", "dest": "api/app.py" }],
+            "environment": {
+                "PYPATH": ".",
+                "PYTHONUSERBASE": ".python_packages"
+            }
+        }
+    },
+    "install": {
+        "include": ["api/**"]
+    }
 }
