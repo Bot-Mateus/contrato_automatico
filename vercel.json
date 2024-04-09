@@ -7,10 +7,7 @@
             "config": { "runtime": "python3.9" }
         }
     ],
-    "routes": [
-        { "src": "/api/(.*)", "dest": "/api/app.py" }
-    ],
     "rewrites": [
-        { "source": "/(.*)", "destination": "/api/$1" }
+        { "source": "/(.*)", "destination": "/api/app.py" }
     ]
 }
