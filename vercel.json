@@ -20,8 +20,5 @@
                 "PYTHONUSERBASE": ".python_packages"
             }
         }
-    },
-    "install": {
-        "include": ["api/**"]
     }
 }
