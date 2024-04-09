@@ -1,5 +1,8 @@
 {
   "engines": {
     "node": "18.x"
+  },
+  "scripts": {
+    "build": "pip install -r requirements.txt && npm run build"
   }
 }
