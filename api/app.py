@@ -52,15 +52,19 @@ def formulario():
 
 @app.route('/generate_contract', methods=['POST'])
 def generate_contract():
+    print("Diretório de trabalho atual:", os.getcwd())
+
     # Obtenha os dados do formulário
     contract_data = {campo: request.form[campo] for campo in request.form}
 
     # Determine o caminho do modelo de contrato com base na escolha do usuário
     modelo_contrato = request.form.get('modelo')
     if modelo_contrato == 'modelo1':
-        template_path = 'static/template_contract1.docx'
+        template_path = os.path.abspath(os.path.join(os.getcwd(), 'static', 'template_contract1.docx'))
+        print("Caminho completo do arquivo:", template_path)
     elif modelo_contrato == 'modelo2':
-        template_path = 'static/template_contract2.docx'
+        template_path = os.path.abspath(os.path.join(os.getcwd(), 'static', 'template_contract1.docx'))
+        print("Caminho completo do arquivo:", template_path)
     else:
         # Caso o modelo não seja reconhecido, retorne uma resposta JSON com erro
         return jsonify({'success': False, 'error': 'Modelo de contrato não reconhecido'})
