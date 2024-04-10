@@ -57,13 +57,16 @@ def generate_contract():
     # Obtenha os dados do formulário
     contract_data = {campo: request.form[campo] for campo in request.form}
 
+    # Obtenha o caminho do diretório atual do script
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
     # Determine o caminho do modelo de contrato com base na escolha do usuário
     modelo_contrato = request.form.get('modelo')
     if modelo_contrato == 'modelo1':
-        template_path = os.path.abspath(os.path.join(os.getcwd(), 'static', 'template_contract1.docx'))
+        template_path = os.path.join(current_dir, 'static', 'template_contract1.docx')
         print("Caminho completo do arquivo:", template_path)
     elif modelo_contrato == 'modelo2':
-        template_path = os.path.abspath(os.path.join(os.getcwd(), 'static', 'template_contract1.docx'))
+        template_path = os.path.join(current_dir, 'static', 'template_contract2.docx')
         print("Caminho completo do arquivo:", template_path)
     else:
         # Caso o modelo não seja reconhecido, retorne uma resposta JSON com erro
