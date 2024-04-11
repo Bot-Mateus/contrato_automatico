@@ -67,10 +67,10 @@ def generate_contract():
     # Determine o caminho do modelo de contrato com base na escolha do usuário
     modelo_contrato = request.form.get('modelo')
     if modelo_contrato == 'modelo1':
-        template_path = os.path.join(current_dir, 'static', 'template_contract1.docx')
+        template_path = os.path.join(current_dir, 'contratos', 'template_contract1.docx')
         print("Caminho completo do arquivo:", template_path)
     elif modelo_contrato == 'modelo2':
-        template_path = os.path.join(current_dir, 'static', 'template_contract2.docx')
+        template_path = os.path.join(current_dir, 'contratos', 'template_contract2.docx')
         print("Caminho completo do arquivo:", template_path)
     else:
         # Caso o modelo não seja reconhecido, retorne uma resposta JSON com erro
