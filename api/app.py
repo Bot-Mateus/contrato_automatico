@@ -87,9 +87,12 @@ def generate_contract():
 
 @app.route('/download_contract')
 def download_contract():
+    # Obtenha o caminho do diretório atual do script
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
     contract_id = request.args.get('contract_id')
     contract_filename = f'generated_contract_{contract_id}.docx'
-    contract_path = os.path.join('contratos', contract_filename)
+    contract_path = os.path.join(current_dir, 'contratos', contract_filename)
     return send_file(contract_path, as_attachment=True)
 
 
