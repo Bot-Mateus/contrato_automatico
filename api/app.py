@@ -76,10 +76,13 @@ def generate_contract():
     contract_id = str(uuid.uuid4())  # Isso gera um identificador único global (GUID)
 
     # Construa o nome do arquivo do contrato com o identificador único
-    output_filename = f'contratos/generated_contract_{contract_id}.docx'
+    output_filename = f'generated_contract_{contract_id}.docx'
+
+    # Construa o caminho completo para o contrato gerado
+    contract_path = os.path.join(current_dir, 'contratos', output_filename)
 
     # Preencha o modelo de contrato com os dados do formulário
-    fill_contract_template(contract_data, template_path, output_filename)
+    fill_contract_template(contract_data, template_path, contract_path)
 
     # Retorne uma resposta JSON indicando sucesso e o nome do arquivo do contrato gerado
     return jsonify({'success': True, 'contract_filename': output_filename, 'contract_id': contract_id})
