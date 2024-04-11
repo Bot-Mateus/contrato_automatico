@@ -16,7 +16,9 @@ app.secret_key = 'sua_chave_secreta_aqui'
 
 # Defina os campos para cada modelo de contrato
 model_fields = {
-    'modelo1': ['landlord_name', 'tenant_name', 'property_address', 'rent_amount', 'valor_extenso', 'start_date', 'end_date', 'cidade_foro'],
+    'modelo1': ['nome_locador', 'nome_locatario', 'endereco_imovel', 'valor_aluguel', 'valor_aluguel_extenso',
+                'data_inicio', 'data_fim', 'cidade_foro'],
+
     'modelo2': ['nome_locador', 'nacionalidade_locador', 'estado_civil_locador', 'profissao_locador',
                 'identidade_locador', 'cpf_locador', 'endereco_locador', 'nome_locatario',
                 'nacionalidade_locatario', 'estado_civil_locatario', 'profissao_locatario',
@@ -26,7 +28,17 @@ model_fields = {
                 'nacionalidade_fiador2', 'estado_civil_fiador2', 'profissao_fiador2',
                 'identidade_fiador2', 'cpf_fiador2', 'endereco_fiador2', 'endereco_imovel',
                 'duracao', 'data_inicio', 'data_fim', 'dia_vencimento', 'valor_aluguel',
-                'cidade_foro']
+                'cidade_foro'],
+
+    'modelo3': ['nome locador', 'nacionalidade locador', 'rg locador', 'orgão emissor', 'cpf locador',
+                'rua residencia locador', 'numero da residencia locador', 'bairro locador',
+                'estado residencia locador UF', 'nome locatario', 'nacionalidade locatario', 'rg locatario',
+                'cpf locatario', 'rua do imovel', 'numero do imovel', 'numero da casa exemplo casa 1',
+                'bairro do imovel', 'estado do imovel UF', 'limite de pessoas no imovel numero',
+                'limite de pessoas por extenso', 'meses duração contrato numero', 'meses duração contrato extenso',
+                'inicio do contrato', 'término contrato', 'valor aluguel numero', 'valor aluguel extenso',
+                'dia de vencimento', 'quantidade de alugueis no depósito numero',
+                'quantidade de alugueis no depósito extenso', 'validade em meses do contrato']
 }
 
 # Diretório temporário para salvar os contratos gerados
@@ -71,6 +83,9 @@ def generate_contract():
         print("Caminho completo do arquivo:", template_path)
     elif modelo_contrato == 'modelo2':
         template_path = os.path.join(current_dir, 'contratos', 'template_contract2.docx')
+        print("Caminho completo do arquivo:", template_path)
+    elif modelo_contrato == 'modelo3':
+        template_path = os.path.join(current_dir, 'contratos', 'template_contract3.docx')
         print("Caminho completo do arquivo:", template_path)
     else:
         # Caso o modelo não seja reconhecido, retorne uma resposta JSON com erro
