@@ -1,8 +1,9 @@
 import binascii
 import os
 import uuid  # Importe a biblioteca uuid para gerar identificadores únicos
+from tempfile import mkdtemp  # Importe mkdtemp para criar um diretório temporário
 
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, send_file
+from flask import Flask, render_template, request, redirect, url_for, jsonify, send_file
 from docx import Document
 
 app = Flask(__name__)
@@ -27,6 +28,9 @@ model_fields = {
                 'duracao', 'data_inicio', 'data_fim', 'dia_vencimento', 'valor_aluguel',
                 'cidade_foro']
 }
+
+# Diretório temporário para salvar os contratos gerados
+temp_dir = mkdtemp()
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -79,7 +83,7 @@ def generate_contract():
     output_filename = f'generated_contract_{contract_id}.docx'
 
     # Construa o caminho completo para o contrato gerado
-    contract_path = os.path.join(current_dir, 'contratos', output_filename)
+    contract_path = os.path.join(temp_dir, output_filename)
 
     # Preencha o modelo de contrato com os dados do formulário
     fill_contract_template(contract_data, template_path, contract_path)
@@ -90,12 +94,9 @@ def generate_contract():
 
 @app.route('/download_contract')
 def download_contract():
-    # Obtenha o caminho do diretório atual do script
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-
     contract_id = request.args.get('contract_id')
     contract_filename = f'generated_contract_{contract_id}.docx'
-    contract_path = os.path.join(current_dir, 'contratos', contract_filename)
+    contract_path = os.path.join(temp_dir, contract_filename)
     return send_file(contract_path, as_attachment=True)
 
 
