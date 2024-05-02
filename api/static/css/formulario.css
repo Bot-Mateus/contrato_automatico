@@ -1,6 +1,8 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f7f7f7;
+    padding: 20px;
+    font-size: 25px; /* Tamanho da fonte global */
 }
 
 .container {
@@ -10,10 +12,10 @@ body {
 }
 
 h1 {
-    font-size: 36px;
+    font-size: 28px; /* Reduzindo o tamanho do título */
     color: #333;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px; /* Reduzindo o espaço abaixo do título */
 }
 
 form {
@@ -29,21 +31,24 @@ label {
 
 input[type="text"] {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
+    border: 2px solid #007bff; /* Adicionando borda mais visível */
     border-radius: 5px;
-    box-sizing: border-box; /* Garante que o padding não aumente a largura do input */
+    box-sizing: border-box;
+    font-size: inherit; /* Herdando o tamanho de fonte global */
 }
 
 input[type="submit"] {
     background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 20px; /* Aumentando o padding do botão */
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 100%;
+    font-size: inherit; /* Herdando o tamanho de fonte global */
 }
 
 input[type="submit"]:hover {

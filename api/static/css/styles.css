@@ -37,9 +37,9 @@ body {
     margin: 10px;
     width: calc(50% - 20px);
     max-width: 350px;
-    display: flex; /* Adicionado */
-    flex-direction: column; /* Adicionado */
-    justify-content: space-between; /* Adicionado */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .contract-template:hover {
@@ -66,7 +66,7 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
     transition: background-color 0.3s ease-in-out;
-    align-self: flex-end; /* Adicionado */
+    align-self: flex-end;
 }
 
 .use-contract-btn:hover {
@@ -87,4 +87,12 @@ body {
 .contract-preview iframe {
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+/* Media queries para dispositivos móveis */
+@media only screen and (max-width: 600px) {
+    .contract-template {
+        width: 100%;
+        max-width: none;
+    }
 }
